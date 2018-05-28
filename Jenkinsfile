@@ -6,7 +6,7 @@ node('ubuntu-1604'){
         maven: 'Maven 3.5.3',
         mavenLocalRepo: '.repository') {
             sh "mvn clean test"
-
+            jacoco(execPattern: 'target/jacoco.exec')
     }
   }
 }
