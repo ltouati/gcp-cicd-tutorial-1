@@ -16,14 +16,11 @@
     }
   ],
   "provisioners": [
-    {
-      "type": "shell",
-      "inline": [
-        "sudo apt-add-repository ppa:rquillo/ansible",
-        "sudo apt-get update",
-        "sudo apt-get -y install ansible"
-      ]
-    },
+     {
+    	"type": "shell",
+    	"execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+    	"script": "ansible.sh"
+  	},
     {
       "type": "ansible-local",
       "playbook_file": "main.yml"
