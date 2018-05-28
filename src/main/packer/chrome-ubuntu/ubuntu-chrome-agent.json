@@ -1,0 +1,32 @@
+{
+  "variables": {
+    "project": "{{env `PROJECT`}}"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "{{user  `project`}}",
+      "source_image_family": "ubuntu-1604-lts",
+      "source_image_project_id": "ubuntu-os-cloud",
+      "zone": "us-central1-a",
+      "disk_size": "100",
+      "image_name": "jenkins-chrome-agent-{{timestamp}}",
+      "image_family": "jenkins-chrome-agent",
+      "ssh_username": "ubuntu"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-add-repository ppa:rquillo/ansible",
+        "sudo apt-get update",
+        "sudo apt-get -y install ansible"
+      ]
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "main.yml"
+    }
+  ]
+}

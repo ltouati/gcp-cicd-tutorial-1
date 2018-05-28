@@ -1,0 +1,6 @@
+hosts: localhost
+ connection: local
+ sudo: yes
+ gather_facts: yes
+ roles:
+   - ansible-role-headless-chrome

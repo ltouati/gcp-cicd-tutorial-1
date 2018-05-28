@@ -1,0 +1,27 @@
+{
+  "variables": {
+    "project": "{{env `PROJECT`}}"
+  },
+  "builders": [
+    {
+      "type": "googlecompute",
+      "project_id": "{{user  `project`}}",
+      "source_image_family": "ubuntu-1604-lts",
+      "source_image_project_id": "ubuntu-os-cloud",
+      "zone": "europe-west1-b",
+      "disk_size": "100",
+      "image_name": "jenkins-agent-{{timestamp}}",
+      "image_family": "jenkins-agent",
+      "ssh_username": "ubuntu"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "sudo apt-get update",
+        "sudo apt-get install -y default-jdk"
+      ]
+    }
+  ]
+}
