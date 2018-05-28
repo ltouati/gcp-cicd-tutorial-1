@@ -10,7 +10,7 @@ node('ubuntu-1604'){
     }
   }
 }
-node('ubuntu-1604'){
+node('chrome-ubuntu-1604'){
   stage ('Functional Tests') {
     git url: 'https://github.com/ltouati/gcp-cicd-tutorial-1.git'
     withMaven(
