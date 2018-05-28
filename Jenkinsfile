@@ -6,7 +6,6 @@ node('ubuntu-1604'){
         maven: 'Maven 3.5.3',
         mavenLocalRepo: '.repository') {
             sh "mvn clean test"
-            junit '*/build/test-results/*.xml'
             step( [ $class: 'JacocoPublisher' ] )
     }
   }
@@ -19,7 +18,6 @@ node('chrome-ubuntu-1604'){
         maven: 'Maven 3.5.3',
         mavenLocalRepo: '.repository') {
             sh "mvn clean verify -P integration-test"
-            junit '*/build/test-results/*.xml'
             step( [ $class: 'JacocoPublisher' ] )
     }
   }
