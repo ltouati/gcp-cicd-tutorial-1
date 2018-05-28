@@ -18,7 +18,6 @@ node('chrome-ubuntu-1604'){
         maven: 'Maven 3.5.3',
         mavenLocalRepo: '.repository') {
             sh "mvn clean verify -P integration-test"
-            step( [ $class: 'JacocoPublisher' ] )
     }
   }
 }
