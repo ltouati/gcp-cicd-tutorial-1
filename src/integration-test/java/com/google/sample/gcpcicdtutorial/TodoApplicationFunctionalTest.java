@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.net.Socket;
 import java.util.List;
@@ -44,7 +45,10 @@ public class TodoApplicationFunctionalTest {
     @Before
     public void beforeTest() {
         int serverPort = (int) (6000 + (Math.random() * 3000));
-        webDriver = new ChromeDriver();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--headless");
+
+        webDriver = new ChromeDriver(chromeOptions);
         Thread t = new Thread(() -> {
             todoModule = TodoModule.create();
             Injector injector = Guice.createInjector(todoModule);
