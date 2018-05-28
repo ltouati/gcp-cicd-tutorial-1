@@ -1,7 +1,7 @@
 pipeline {
-    agent any
+    label 'ubuntu-1604'
     tools {
-        maven 'Maven 3.3.9'
+        maven 'Maven 3.5.3'
         jdk 'jdk8'
     }
     stages {
