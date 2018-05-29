@@ -23,7 +23,6 @@ node('chrome-ubuntu-1604'){
 }
 node('ubuntu-1604'){
     stage('Create Docker Image') {
-        tool name: 'docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
         git url: 'https://github.com/ltouati/gcp-cicd-tutorial-1.git'
         withMaven(
             // Maven installation declared in the Jenkins "Global Tool Configuration"
