@@ -41,7 +41,8 @@ node('ubuntu-1604'){
                     sh "gcloud --format='value(networkInterfaces[0].accessConfigs[0].natIP)' compute instances list --filter='name=( test-${env.BUILD_ID}-${commit_id} )' > public_ip "
                 }
                 def public_ip = readFile('public_ip').trim()
-                addBadge icon: 'star.gif', id: 'test-link', link: 'http://${public_ip}:7000/', text: 'Link to the test version'
+                def final_link = "http://${public_ip}:7000/"
+                addBadge icon: 'star.gif', id: 'test-link', link: "${final_link}", text: 'Link to the test version'
         }
     }
 }
