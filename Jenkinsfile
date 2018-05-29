@@ -35,7 +35,7 @@ node('ubuntu-1604'){
                 def commit_id = readFile('.git/commit-id').trim()
                 sh "mvn clean -Ddocker.image.version=${env.BUILD_ID}-${commit_id} -Dgcp-project-id=gcp-ltouati-cloud-summit install -P docker"
                 gcloud(serviceAccountCredential: 'gcp-instance-creator') {
-                    sh "gcloud beta compute instances create-with-container TEST-${env.BUILD_ID}-${commit_id} --zone=europe-west1-b --machine-type=n1-standard-1  --image-project=cos-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --container-image=eu.gcr.io/gcp-ltouati-cloud-summit/todo-app:${env.BUILD_ID}-${commit_id} --container-restart-policy=always --preemptible"
+                    sh "gcloud beta compute instances create-with-container test-${env.BUILD_ID}-${commit_id} --zone=europe-west1-b --machine-type=n1-standard-1  --image-project=cos-cloud --boot-disk-size=10GB --boot-disk-type=pd-standard --container-image=eu.gcr.io/gcp-ltouati-cloud-summit/todo-app:${env.BUILD_ID}-${commit_id} --container-restart-policy=always --preemptible"
                 }
         }
     }
