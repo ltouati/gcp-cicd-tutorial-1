@@ -1,7 +1,6 @@
 library "gcloud-pipeline-library"
 def default_zone = 'europe-west1-b'
 def project_id='gcp-ltouati-cloud-summit'
-/*
 node('ubuntu-1604'){
   stage ('Unit Tests') {
     checkout scm
@@ -25,7 +24,6 @@ node('chrome-ubuntu-1604'){
     }
   }
 }
-*/
 node('ubuntu-1604'){
     stage('Create Docker Image') {
         checkout scm
