@@ -12,3 +12,14 @@ node('ubuntu-1604'){
     }
   }
 }
+node('chrome-ubuntu-1604'){
+  stage ('Functional Tests') {
+    checkout scm
+    withMaven(
+        // Maven installation declared in the Jenkins "Global Tool Configuration"
+        maven: 'Maven 3.5.3',
+        mavenLocalRepo: '.repository') {
+            sh "mvn clean verify -P integration-test"
+    }
+  }
+}
